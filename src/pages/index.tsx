@@ -1,13 +1,5 @@
-import PageLayout from "@/components/common/layouts/page-layout";
+import MainPage from '@/components/pages/main-page';
 
-export default function Home() {
-    return (
-        <PageLayout>
-            <div>
-                <h1>
-                    PetitionApp
-                </h1>
-            </div>
-        </PageLayout>
-    )
-}
+const Main = () => <MainPage/>;
+
+export default Main;
