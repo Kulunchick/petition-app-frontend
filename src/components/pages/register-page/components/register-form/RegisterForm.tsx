@@ -7,8 +7,14 @@ import {MdLockOutline} from "react-icons/md";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {object, ref, string} from "yup";
+import {RegisterFormFields} from "@/components/pages/register-page/components/register-form/types";
+import {useRouter} from "next/router";
+import {AuthApi} from "@/lib/api/auth/AuthApi";
+import Swal from "sweetalert2";
+import {FormikHelpers} from "formik/dist/types";
+import withReactContent from "sweetalert2-react-content";
 
 const genders = [
     {
@@ -22,6 +28,8 @@ const genders = [
 ]
 
 const RegisterForm = () => {
+    const router = useRouter();
+    const MySwal = withReactContent(Swal)
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -48,17 +56,44 @@ const RegisterForm = () => {
         confirmPassword: string().required('Required').oneOf([ref('password')], 'Password doesn\'t match'),
     })
 
+    const handleSubmit = useCallback(
+        async (data: RegisterFormFields, {setErrors}: FormikHelpers<RegisterFormFields>) => {
+            try {
+                await AuthApi.register(data)
+                await MySwal.fire({
+                    icon: 'success',
+                    title: 'Your successfully registered',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                await router.push("/login")
+            } catch (e) {
+                // @ts-ignore
+                const message = e.response.data.detail;
+                if (message == "User already exists") {
+                    setErrors({
+                        email: "Email already exists"
+                    })
+                    return;
+                }
+                await MySwal.fire({
+                    icon: 'error',
+                    title: 'Try again later',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        },
+        [router, MySwal]
+    )
+
     return (
         <Formik
             enableReinitialize
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, formikHelpers) => {
-
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                }, 500);
-            }}>
+            onSubmit={handleSubmit}
+        >
             {(props) => (
                 <Form className="align-center flex justify-center">
                     <div className="w-80 flex flex-col items-center">

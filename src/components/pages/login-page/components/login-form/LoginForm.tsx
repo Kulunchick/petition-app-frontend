@@ -8,8 +8,13 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import React, {useState} from "react";
 import {object, string} from "yup";
+import {signIn, useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 const LoginForm = () => {
+    const {data: session} = useSession();
+    const router = useRouter();
+
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -27,18 +32,32 @@ const LoginForm = () => {
         email: string().email('Please enter a valid email').required('Required'),
         password: string().required('Required'),
     })
+
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, formikHelpers) => {
-                formikHelpers.setFieldError('password', 'Invalid')
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                }, 500);
-            }}>
+            onSubmit={async (values, {setErrors}) => {
+                const status = await signIn('credentials', {
+                    redirect: false,
+                    email: values.email,
+                    password: values.password
+                })
+                if (status?.ok) {
+                    router.push("/")
+                } else {
+                    setErrors({
+                        email: "Invalid email or password",
+                        password: "Invalid email or password"
+                    })
+                }
+            }}
+        >
             {(props) => (
-                <Form className="align-center">
+                <Form className="align-center" onSubmit={(event) => {
+                    event.preventDefault();
+                    props.handleSubmit()
+                }}>
                     <div className="flex flex-col items-center">
                         <Field
                             as={TextField}
