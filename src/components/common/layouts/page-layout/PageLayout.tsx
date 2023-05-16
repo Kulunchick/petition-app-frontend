@@ -37,7 +37,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
             <div className={className}>
                 {hasHeader && (
                     <>
-                        <Header />
+                        <Header/>
                     </>
                 )}
                 {children}
