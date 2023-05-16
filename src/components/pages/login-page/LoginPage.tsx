@@ -3,7 +3,6 @@ import RightBlock from "@/components/pages/login-page/components/right-block";
 import PageLayout from "@/components/common/layouts/page-layout";
 
 const LoginPage = () => {
-
     return (
         <PageLayout
             hasHeader={false}
