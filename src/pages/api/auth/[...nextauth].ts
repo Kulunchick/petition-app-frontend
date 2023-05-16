@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import {AuthApi} from "@/lib/api/auth/AuthApi";
 
 export default NextAuth(
     {
@@ -17,19 +18,13 @@ export default NextAuth(
                         password: credentials?.password,
                     };
 
-                    const res = await fetch("http://127.0.0.1:8000/api/v1/auth/login", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(credentialDetails)
-                    })
-                    const response = await res.json();
-                    if (res.status == 200) {
-                        return response;
+                    try {
+                        const data = await AuthApi.login(credentialDetails);
+                        return data
                     }
-
-                    return null;
+                    catch {
+                        return null
+                    }
                 }
             })
         ],
