@@ -19,7 +19,6 @@
     "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
-    "draft-js": "^0.11.7",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "formik": "^2.2.9",
@@ -31,7 +30,6 @@
     "react": "18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "18.2.0",
-    "react-draft-wysiwyg": "^1.15.0",
     "react-icons": "^4.8.0",
     "react-loader-spinner": "^5.3.4",
     "react-query": "^3.39.3",
@@ -41,8 +39,5 @@
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4",
     "yup": "^1.1.0"
-  },
-  "devDependencies": {
-    "@types/react-draft-wysiwyg": "^1.13.4"
   }
 }

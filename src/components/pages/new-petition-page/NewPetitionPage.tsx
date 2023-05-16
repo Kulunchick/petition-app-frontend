@@ -80,7 +80,7 @@ const NewPetitionPage = () => {
             })
             await router.push('/')
         },
-        [router, MySwal],
+        [router, MySwal, description, title],
     )
 
     return (
