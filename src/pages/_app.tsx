@@ -3,15 +3,21 @@ import type {AppProps} from 'next/app'
 import {QueryClient, QueryClientProvider} from "react-query";
 import {ThemeProvider} from "@mui/material";
 import theme from "@/styles/theme";
+import {SessionProvider} from "next-auth/react";
+import React from "react";
+import {ReactQueryDevtools} from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
-export default function App({Component, pageProps}: AppProps) {
+export default function App({Component, pageProps: {session, ...pageProps}}: AppProps) {
     return (
-        <ThemeProvider theme={theme}>
+        <SessionProvider session={session}>
             <QueryClientProvider client={queryClient}>
-                <Component {...pageProps} />
+                <ThemeProvider theme={theme}>
+                    <Component {...pageProps} />
+                </ThemeProvider>
+                <ReactQueryDevtools initialIsOpen={false}/>
             </QueryClientProvider>
-        </ThemeProvider>
+        </SessionProvider>
     )
 }
