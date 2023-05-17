@@ -176,7 +176,7 @@ const PetitionPage = () => {
                         {(session.data && checkData?.can_vote) &&
                             <Button
                                 onClick={handleVote}
-                                className="bg-green-500 text-white hover:text-green-500"
+                                className="bg-green-500 text-white hover:text-green-500 hover:bg-white"
                                 sx={{
                                     border: 2,
                                     borderColor: "green"
