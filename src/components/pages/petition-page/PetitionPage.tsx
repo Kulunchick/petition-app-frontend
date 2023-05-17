@@ -23,7 +23,7 @@ const PetitionPage = () => {
     const session = useSession();
     const petitionId = router.query.petitionId as string;
     const [page, setPage] = useState(1)
-    const {isLoading, isError, data} = useQuery<Petition>(
+    const {isLoading, isError, data} = useQuery<PetitionDTO>(
         ['petition', petitionId],
         () => PetitionAPI.getPetition(petitionId),
         {
@@ -51,7 +51,7 @@ const PetitionPage = () => {
         )
     }
 
-    const {data: checkData} = useQuery<CheckVote>(
+    const {data: checkData} = useQuery<CheckVoteDTO>(
         ["check", petitionId],
         () => VoteAPI.check(petitionId),
         {

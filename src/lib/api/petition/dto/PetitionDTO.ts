@@ -1,4 +1,4 @@
-interface Petition {
+interface PetitionDTO {
     id: string;
     title: string;
     description: string;

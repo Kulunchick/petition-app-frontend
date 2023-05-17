@@ -17,7 +17,7 @@ export class PetitionAPI {
         return data;
     }
 
-    static async addPetition(body: NewPetition) {
+    static async addPetition(body: NewPetitionDTO) {
         const {data} = await client.post(
             `/petitions/`,
             body,

@@ -1,4 +1,4 @@
-interface Vote {
+interface VoteDTO {
     user: {
         id: string,
         first_name: string,
@@ -6,6 +6,6 @@ interface Vote {
         email: string,
         gender: string,
     },
-    petition: Petition
+    petition: PetitionDTO
     created_at: Date
 }

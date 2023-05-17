@@ -1,4 +1,4 @@
-interface NewPetition {
+interface NewPetitionDTO {
     title: string;
     description: string;
 }
