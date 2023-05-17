@@ -54,11 +54,15 @@ const Header = () => {
                         </Typography>
                         <Button
                             onClick={() => signOut()}
-                            className="bg-green-500 text-white hover:text-green-500 rounded-full px-5 py-2"
+                            className="border-2 border-green-500 bg-green-500 text-white rounded-full px-5 py-2 inline-block font-semibold hover:bg-white hover:text-green-500"
                             sx={{
-                                border: 2,
-                                borderColor: "green"
+                                textTransform: "none",
+                                borderColor: "green",
+                                ":hover": {
+                                    border: 2,
+                                }
                             }}
+                            variant="outlined"
                         >
                             Logout
                         </Button>
