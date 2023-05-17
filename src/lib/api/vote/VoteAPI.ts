@@ -4,7 +4,7 @@ import {getAuthorizationHeader} from "@/lib/api/utils";
 export class VoteAPI {
     static async getAllVotes(petitionId: string, page: number = 1, pageLimit: number = 25) {
         const {data} = await client.get(
-            `/votes/petitions/${petitionId}/?page=${page}&page_limit=${pageLimit}`
+            `/votes/petitions/${petitionId}?page=${page}&page_limit=${pageLimit}`
         );
         return data;
     }

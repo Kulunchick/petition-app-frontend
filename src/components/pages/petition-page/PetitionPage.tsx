@@ -65,7 +65,7 @@ const PetitionPage = () => {
         ["votes", petitionId, page],
         () => VoteAPI.getAllVotes(petitionId, page),
         {
-            enabled: router.isReady && !isError && !isLoading && Boolean(session),
+            enabled: router.isReady && !isError && !isLoading && Boolean(session.data),
             refetchOnWindowFocus: false,
             retry: false,
         },
