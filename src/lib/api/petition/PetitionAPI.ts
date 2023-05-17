@@ -1,5 +1,4 @@
 import {client} from "@/lib/api/instance";
-import {getSession} from "next-auth/react";
 import {getAuthorizationHeader} from "@/lib/api/utils";
 
 export class PetitionAPI {
