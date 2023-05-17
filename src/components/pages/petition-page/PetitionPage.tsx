@@ -76,7 +76,7 @@ const PetitionPage = () => {
             await VoteAPI.vote(petitionId)
             router.reload()
         },
-        [router, MySwal, petitionId]
+        [router, petitionId]
     )
 
     const deletePetition = useCallback(
@@ -84,7 +84,7 @@ const PetitionPage = () => {
             await PetitionAPI.deletePetition(petitionId)
             await router.push("/")
         },
-        [router, MySwal, petitionId]
+        [router, petitionId]
     )
 
     return (

@@ -22,11 +22,11 @@ const Header = () => {
                     className="font-semibold flex"
                     color="black"
                 >
-                    <Link href={"/"}>
+                    <Link href={"/"} className="font-semibold text-black">
                         <span className="text-green-500">Petition</span>App
                     </Link>
                 </Typography>
-                <Box className="flex">
+                <Box className="flex font-semibold text-black">
                     <Link href={'/'}>
                         Home
                     </Link>
@@ -34,7 +34,7 @@ const Header = () => {
                 {!data && (
                     <Box className="flex items-center gap-8">
                         <Link
-                            className="font-semibold"
+                            className="font-semibold text-black"
                             href={"/login"}
                         >
                             Sign In

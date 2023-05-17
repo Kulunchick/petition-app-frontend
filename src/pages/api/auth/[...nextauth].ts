@@ -19,8 +19,7 @@ export default NextAuth(
                     };
 
                     try {
-                        const data = await AuthApi.login(credentialDetails);
-                        return data
+                        return await AuthApi.login(credentialDetails)
                     }
                     catch {
                         return null

@@ -1,7 +1,8 @@
 import '@/styles/globals.css'
+import 'tailwindcss/tailwind.css'
 import type {AppProps} from 'next/app'
 import {QueryClient, QueryClientProvider} from "react-query";
-import {ThemeProvider} from "@mui/material";
+import {CssBaseline, StyledEngineProvider, ThemeProvider} from "@mui/material";
 import theme from "@/styles/theme";
 import {SessionProvider} from "next-auth/react";
 import React from "react";
@@ -13,9 +14,12 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
     return (
         <SessionProvider session={session}>
             <QueryClientProvider client={queryClient}>
-                <ThemeProvider theme={theme}>
-                    <Component {...pageProps} />
-                </ThemeProvider>
+                <StyledEngineProvider injectFirst>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline/>
+                        <Component {...pageProps} />
+                    </ThemeProvider>
+                </StyledEngineProvider>
                 <ReactQueryDevtools initialIsOpen={false}/>
             </QueryClientProvider>
         </SessionProvider>
