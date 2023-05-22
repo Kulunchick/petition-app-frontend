@@ -5,8 +5,6 @@ import PageLayout from "@/components/common/layouts/page-layout";
 
 
 const RegisterPage = () => {
-
-
     return (
         <PageLayout
             hasHeader={false}
