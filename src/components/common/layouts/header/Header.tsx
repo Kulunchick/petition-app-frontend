@@ -10,7 +10,7 @@ const Header = () => {
 
     return (
         <Popover
-            className="container mx-auto flex items-center border-b-2 px-6 py-2 h-24"
+            className="container mx-auto flex items-center border-b-2 px-6 py-2 h-24 z-10"
         >
             <Typography
                 className="font-semibold"
@@ -27,7 +27,7 @@ const Header = () => {
             </div>
             <div className="flex grow items-center justify-end sm:hidden">
                 <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400
-                hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+                hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 z-10">
                     <span className="sr-only">Open menu</span>
                     <HiBars3 className="h-6 w-6" aria-hidden="true"/>
                 </Popover.Button>
@@ -46,7 +46,7 @@ const Header = () => {
             >
                 <Popover.Panel
                     focus
-                    className="absolute inset-x-0 top-0 origin-top-right transform p-2"
+                    className="absolute inset-x-0 top-0 origin-top-right transform p-2 z-10"
                 >
                     <div
                         className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y-2 divide-gray-50">
